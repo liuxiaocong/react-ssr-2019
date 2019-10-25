@@ -19,7 +19,9 @@ import * as serviceWorker from './serviceWorker';
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware, thunk];
 const storeEnhancer = composeWithDevTools(applyMiddleware(...middlewares));
-const store = createStore(rootReducer, storeEnhancer);
+console.log(window.__PRELOADED_STATE__);
+let preloadedState = window.__PRELOADED_STATE__ || {};
+const store = createStore(rootReducer, preloadedState, storeEnhancer);
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.hydrate(

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'redux-react-hook';
 import todoActions from '../../data/todo/actions';
 import styles from './styles.css';
-const Home = ({ todos, gitData, addTodo, loadGitInfo })=>{
+const Home = ({ todos, gitData, addTodo, state, loadGitInfo })=>{
+  console.log(state);
   const [todoValue, setTodoValue] = useState('');
   const dispatch = useDispatch();
   return (
@@ -46,6 +47,7 @@ const Home = ({ todos, gitData, addTodo, loadGitInfo })=>{
 const mapStateToProps = state => ({
   todos: state.todo.todos,
   gitData: state.todo.gitData,
+  state: state,
 });
 
 const mapDispatchToProps = dispatch => ({
