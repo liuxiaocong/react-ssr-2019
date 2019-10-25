@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import logo from './logo.svg';
 import style from './App.css';
-import Home from './containers/home';
+import Home from './containers/home/indexReduce';
 import About from './containers/about';
 import Me from './containers/me';
 
