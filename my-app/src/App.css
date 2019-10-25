@@ -1,3 +1,11 @@
+body {
+  background: #F1F1F1;
+}
+
 .wrap {
   max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #FFF;
+  min-height: 100vh;
 }
