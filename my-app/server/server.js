@@ -65,6 +65,7 @@ const serverRenderer = (req, res, next) => {
       },
     };
     const store = createStore(reducers, preloadedState);
+    console.log(req.url);
     const markup = ReactDOMServer.renderToString(
       <Provider store={ store }>
         <StoreContext.Provider value={ store }>
@@ -83,7 +84,15 @@ const serverRenderer = (req, res, next) => {
     //  'window.__PRELOADED_STATE__={}',
     //  'window.__PRELOADED_STATE__=' + JSON.stringify(preloadedState) + ';',
     //))
-    return res.send(
+    //console.log(data.replace(
+    //  '<div id="root"></div>',
+    //  `<div id="root">${ markup }</div>`,
+    //).replace(
+    //  'window.__PRELOADED_STATE__={}',
+    //  'window.__PRELOADED_STATE__=' + JSON.stringify(preloadedState) + ';',
+    //))
+    res.writeHead( 200, { "Content-Type": "text/html" } );
+    res.end(
       data.replace(
         '<div id="root"></div>',
         `<div id="root">${ markup }</div>`,
@@ -94,8 +103,10 @@ const serverRenderer = (req, res, next) => {
     );
   });
 };
+//router.use('^/$', serverRenderer);  黑人❓。。
+router.use('/me', serverRenderer);
+router.use('/about', serverRenderer);
 router.use('^/$', serverRenderer);
-
 router.use(
   express.static(path.resolve(__dirname, '..', 'build'), {maxAge: '30d'}),
 );
