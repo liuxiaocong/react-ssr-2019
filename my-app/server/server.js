@@ -104,9 +104,11 @@ const serverRenderer = (req, res, next) => {
   });
 };
 //router.use('^/$', serverRenderer);  黑人❓。。
-router.use('/me', serverRenderer);
+//router.use('/me', serverRenderer);
+
 router.use('/about', serverRenderer);
 router.use('^/$', serverRenderer);
+
 router.use(
   express.static(path.resolve(__dirname, '..', 'build'), {maxAge: '30d'}),
 );
